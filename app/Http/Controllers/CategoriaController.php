@@ -71,11 +71,30 @@ class CategoriaController extends Controller
 
     public function update()
     {
+
+        $reglas=[
+            "nombre"=>["required","alpha","min:4","unique:category,name"]
+        ];
+
+        //Mensajes en español
+        $mensajes=[
+            "required" => "Campo obligatorio",
+            "alpha"=> "Solo letras",
+            "min"=>"Solo categorias de :min caracteres",
+            "unique" => "Categoria repetida"
+        ];
+        $validador = Validator::make($_POST, $reglas,$mensajes);
+        if ($validador->fails()) {
+            # code...
+            return redirect('categorias/edit/'.$_POST["id"])->withErrors($validador)->withInput();
+        } else{
+
         $categoria = Categoria::find($_POST["id"]);
         //Actualizar
         $categoria->name = $_POST["nombre"];
         //guardar
         $categoria->save();
         echo"Cambios guardados";
+        }
     }
 }
