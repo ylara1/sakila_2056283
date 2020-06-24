@@ -1,6 +1,7 @@
 <?php
 
 use App\Categoria;
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,3 +86,22 @@ Route::post('categorias/store', "CategoriaController@store");
 Route::get('categorias/edit/{category_id}', "CategoriaController@edit");
 
 Route::post('categorias/update', "CategoriaController@update");
+
+Route::get("peliculas", "PeliculasController@index");
+Route::get("acordeon", function(){
+    $categorias = App\Categoria::all();
+    return view('peliculas.acordeon')
+    ->with("categorias", $categorias);
+});
+Route::get('tabs', function () {
+    $categorias = App\Categoria::all();
+    return view('peliculas.tabs')
+    ->with("categorias", $categorias);
+});
+
+Route::get("clientes/jsoncities/{id_pais}","LocationController@jsoncities");
+Route::get("clientes/create", "ClienteController@create");
+Route::post('clientes/store', "ClienteController@store");
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

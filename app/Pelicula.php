@@ -17,5 +17,9 @@ class Pelicula extends Model
        return $this-> belongsToMany('App\Categoria','film_category','film_id','category_id');
     }
 
+    public function idioma(){
+        //Retornamos el inverso de la relacion
+        return $this->belongsTo("App\Idioma","language_id");
+    }
 
 }
