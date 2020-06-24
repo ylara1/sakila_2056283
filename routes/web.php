@@ -105,3 +105,7 @@ Route::post('clientes/store', "ClienteController@store");
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
