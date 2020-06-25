@@ -3,6 +3,7 @@
 use App\Categoria;
 use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,9 +103,7 @@ Route::get('tabs', function () {
 Route::get("clientes/jsoncities/{id_pais}","LocationController@jsoncities");
 Route::get("clientes/create", "ClienteController@create");
 Route::post('clientes/store', "ClienteController@store");
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
